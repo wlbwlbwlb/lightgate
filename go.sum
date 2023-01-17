@@ -214,6 +214,10 @@ github.com/wl955/log v0.0.0-20221118085132-f536573290ff h1:/4eNnzJMJlXZkuGInrg4L
 github.com/wl955/log v0.0.0-20221118085132-f536573290ff/go.mod h1:guJMPLSp7VuYeJb+oGKsy5yUvKFVvuGI2Z5X8vIjKx4=
 github.com/wl955/nsqx v0.0.0-20230117080726-d134017e9579 h1:yXlkHKYMVjRHIk8ob+y1rgGq8hyPOYo5vdc3bN3z0Y0=
 github.com/wl955/nsqx v0.0.0-20230117080726-d134017e9579/go.mod h1:VNX6lb8yYHiTFVTMmKxFT1aMGnP7xJOlG0PYcXdzDhU=
+github.com/wl955/nsqx v0.0.0-20230117093004-6f706bb5bb36 h1:ByGxQZGw4RLUSReNsyQWeDF1aS9mYlraaNSou6PQt58=
+github.com/wl955/nsqx v0.0.0-20230117093004-6f706bb5bb36/go.mod h1:VNX6lb8yYHiTFVTMmKxFT1aMGnP7xJOlG0PYcXdzDhU=
+github.com/wl955/nsqx v0.0.0-20230117095001-c4d35b560eca h1:GD079nk9vkPjGWHXwqADO4j4mY+si3TcW9XDXOnXlHk=
+github.com/wl955/nsqx v0.0.0-20230117095001-c4d35b560eca/go.mod h1:VNX6lb8yYHiTFVTMmKxFT1aMGnP7xJOlG0PYcXdzDhU=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

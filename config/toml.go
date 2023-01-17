@@ -9,6 +9,12 @@ import (
 
 type Toml struct {
 	Port int
+	Nsq  NsqConfig
+}
+
+type NsqConfig struct {
+	LookupdAddr string
+	NsqdAddr    string
 }
 
 var TOML Toml

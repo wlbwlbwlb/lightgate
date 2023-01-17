@@ -7,7 +7,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.14.0
 	github.com/wl955/log v0.0.0-20221118085132-f536573290ff
-	github.com/wl955/nsqx v0.0.0-20230117080726-d134017e9579
+	github.com/wl955/nsqx v0.0.0-20230117095001-c4d35b560eca
 )
 
 require (

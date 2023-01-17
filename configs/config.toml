@@ -1,2 +1,8 @@
-# tcp
-# port = 9091
+#tcp
+port = 9091
+
+
+[nsq]
+lookupdAddr = "localhost:4161"
+nsqdAddr = "localhost:4150"
+

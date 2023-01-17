@@ -31,7 +31,9 @@ func main() {
 
 	w := io.MultiWriter(os.Stdout, log.Writer())
 
-	e := nsqx.Init()
+	e := nsqx.Init(nsqx.Lookupd(config.TOML.Nsq.LookupdAddr),
+		nsqx.Nsqd(config.TOML.Nsq.NsqdAddr),
+	)
 	if e != nil {
 		log.Fatal(e.Error())
 	}
