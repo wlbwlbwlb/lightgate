@@ -3,21 +3,23 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/DarthPestilane/easytcp"
-	"github.com/wl955/lightgate/config"
 	"io"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
 
+	"github.com/wl955/lightgate/config"
+	_ "github.com/wl955/lightgate/mq"
 	"github.com/wl955/lightgate/tcpx"
 
+	"github.com/DarthPestilane/easytcp"
 	"github.com/wl955/log"
+	"github.com/wl955/nsqx"
 )
 
 func main() {
-	fmt.Println("hello world")
+	//fmt.Println("hello world")
 
 	// Create context that listens for the interrupt signal from the OS.
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
@@ -28,6 +30,14 @@ func main() {
 	}()
 
 	w := io.MultiWriter(os.Stdout, log.Writer())
+
+	e := nsqx.Init()
+	if e != nil {
+		log.Fatal(e.Error())
+	}
+	defer func() {
+		nsqx.Stop()
+	}()
 
 	serve, _ := tcpx.Init(tcpx.Writer(w))
 
