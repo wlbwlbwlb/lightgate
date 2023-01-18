@@ -95,6 +95,8 @@ github.com/golang/protobuf v1.5.0/go.mod h1:FsONVRAS9T7sI+LIUmWTfcYkHO4aIWwzhcaS
 github.com/golang/snappy v0.0.1/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEWrmP2Q=
 github.com/golang/snappy v0.0.4 h1:yAGX7huGHXlcLOEtBnF4w7FQwA26wojNCwOYAEhLjQM=
 github.com/golang/snappy v0.0.4/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEWrmP2Q=
+github.com/gomodule/redigo v1.8.9 h1:Sl3u+2BI/kk+VEatbj0scLdrFhjPmbxOc1myhDP41ws=
+github.com/gomodule/redigo v1.8.9/go.mod h1:7ArFNvsTjH8GMMzB4uy1snslv2BwmginuMs06a1uzZE=
 github.com/google/btree v0.0.0-20180813153112-4030bb1f1f0c/go.mod h1:lNA+9X1NB3Zf8V7Ke586lFgjr2dZNuvo3lPJSGZ5JPQ=
 github.com/google/btree v1.0.0/go.mod h1:lNA+9X1NB3Zf8V7Ke586lFgjr2dZNuvo3lPJSGZ5JPQ=
 github.com/google/go-cmp v0.2.0/go.mod h1:oXzfMopK8JAjlY9xF4vHSVASa0yLyX7SntLO5aqRK0M=
@@ -212,10 +214,6 @@ github.com/vmihailenco/tagparser/v2 v2.0.0 h1:y09buUbR+b5aycVFQs/g70pqKVZNBmxwAh
 github.com/vmihailenco/tagparser/v2 v2.0.0/go.mod h1:Wri+At7QHww0WTrCBeu4J6bNtoV6mEfg5OIWRZA9qds=
 github.com/wl955/log v0.0.0-20221118085132-f536573290ff h1:/4eNnzJMJlXZkuGInrg4LWgPTI7VJrCcYQjf/WIB6kc=
 github.com/wl955/log v0.0.0-20221118085132-f536573290ff/go.mod h1:guJMPLSp7VuYeJb+oGKsy5yUvKFVvuGI2Z5X8vIjKx4=
-github.com/wl955/nsqx v0.0.0-20230117080726-d134017e9579 h1:yXlkHKYMVjRHIk8ob+y1rgGq8hyPOYo5vdc3bN3z0Y0=
-github.com/wl955/nsqx v0.0.0-20230117080726-d134017e9579/go.mod h1:VNX6lb8yYHiTFVTMmKxFT1aMGnP7xJOlG0PYcXdzDhU=
-github.com/wl955/nsqx v0.0.0-20230117093004-6f706bb5bb36 h1:ByGxQZGw4RLUSReNsyQWeDF1aS9mYlraaNSou6PQt58=
-github.com/wl955/nsqx v0.0.0-20230117093004-6f706bb5bb36/go.mod h1:VNX6lb8yYHiTFVTMmKxFT1aMGnP7xJOlG0PYcXdzDhU=
 github.com/wl955/nsqx v0.0.0-20230117095001-c4d35b560eca h1:GD079nk9vkPjGWHXwqADO4j4mY+si3TcW9XDXOnXlHk=
 github.com/wl955/nsqx v0.0.0-20230117095001-c4d35b560eca/go.mod h1:VNX6lb8yYHiTFVTMmKxFT1aMGnP7xJOlG0PYcXdzDhU=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

@@ -8,13 +8,20 @@ import (
 )
 
 type Toml struct {
-	Port int
-	Nsq  NsqConfig
+	Port    int
+	Authapi string
+	Nsq     NsqConfig
+	Redis   RedisConfig
 }
 
 type NsqConfig struct {
-	LookupdAddr string
-	NsqdAddr    string
+	Lookupd string
+	Nsqd    string
+}
+
+type RedisConfig struct {
+	Server   string
+	Password string
 }
 
 var TOML Toml

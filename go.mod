@@ -4,6 +4,8 @@ go 1.17
 
 require (
 	github.com/DarthPestilane/easytcp v0.4.0
+	github.com/gomodule/redigo v1.8.9
+	github.com/nsqio/go-nsq v1.1.0
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.14.0
 	github.com/wl955/log v0.0.0-20221118085132-f536573290ff
@@ -24,7 +26,6 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
-	github.com/nsqio/go-nsq v1.1.0 // indirect
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.5 // indirect

@@ -1,8 +1,12 @@
 #tcp
 port = 9091
 
+authapi = "http://localhost:9090/user/auth"
+
+[redis]
+server = "localhost:6379"
+password = "123456"
 
 [nsq]
-lookupdAddr = "localhost:4161"
-nsqdAddr = "localhost:4150"
-
+lookupd = "localhost:4161"
+nsqd = "localhost:4150"
