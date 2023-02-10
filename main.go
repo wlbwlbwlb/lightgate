@@ -31,15 +31,13 @@ func main() {
 
 	w := io.MultiWriter(os.Stdout, log.Writer())
 
-	e := nsqx.Init(nsqx.Lookupd(config.TOML.Nsq.Lookupd),
+	quit, e := nsqx.Init(nsqx.Lookupd(config.TOML.Nsq.Lookupd),
 		nsqx.Nsqd(config.TOML.Nsq.Nsqd),
 	)
 	if e != nil {
 		log.Fatal(e.Error())
 	}
-	defer func() {
-		nsqx.Stop()
-	}()
+	defer quit()
 
 	serve, _ := tcpx.Init(tcpx.Writer(w))
 
