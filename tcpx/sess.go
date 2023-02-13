@@ -15,7 +15,7 @@ type SessionManager struct {
 	storage map[int64]easytcp.Session
 }
 
-func (p *SessionManager) onUserAuth(uid int64, sess easytcp.Session) {
+func (p *SessionManager) onLoginSuccess(uid int64, sess easytcp.Session) {
 	p.lock.Lock()
 	defer p.lock.Unlock()
 

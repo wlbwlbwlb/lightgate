@@ -23,8 +23,8 @@ func addRoute(serve *easytcp.Server) {
 		var e error
 
 		resp := struct {
-			Code int
-			Msg  string
+			Code int    `json:"code"`
+			Msg  string `json:"msg"`
 		}{
 			Code: 1,
 		}
@@ -83,7 +83,7 @@ func addRoute(serve *easytcp.Server) {
 		conn := kvstore.RedisPool.Get()
 		defer conn.Close()
 
-		keyStr := fmt.Sprintf("user:%d:lightgate", got.Data.UserId)
+		keyStr := fmt.Sprintf("user:%d:loc", got.Data.UserId)
 
 		val, e2 := redis.Int(conn.Do("GET", keyStr))
 
@@ -97,7 +97,7 @@ func addRoute(serve *easytcp.Server) {
 		b3 := nil == e2 && val != config.TOML.Port
 
 		if b || b2 {
-			sessions.onUserAuth(got.Data.UserId, c.Session())
+			sessions.onLoginSuccess(got.Data.UserId, c.Session())
 			conn.Do("SET", keyStr, config.TOML.Port)
 		}
 

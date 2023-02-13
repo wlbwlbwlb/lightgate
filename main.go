@@ -25,9 +25,7 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 
-	defer func() {
-		log.Sync()
-	}()
+	defer log.Sync()
 
 	w := io.MultiWriter(os.Stdout, log.Writer())
 
