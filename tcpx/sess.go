@@ -1,6 +1,7 @@
 package tcpx
 
 import (
+	"fmt"
 	"sync"
 
 	"github.com/DarthPestilane/easytcp"
@@ -24,5 +25,7 @@ func (p *SessionManager) onLoginSuccess(uid int64, sess easytcp.Session) {
 }
 
 func (p *SessionManager) onSessionClose(sess easytcp.Session) {
-	delete(sessions.storage, sess.ID().(int64))
+	uid := sess.ID().(int64)
+	delete(sessions.storage, uid)
+	fmt.Printf("user %d logout\n", uid)
 }

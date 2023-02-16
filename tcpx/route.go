@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 
 	"github.com/wl955/lightgate/config"
@@ -67,7 +66,6 @@ func addRoute(serve *easytcp.Server) {
 		if e != nil {
 			return
 		}
-		//log.Info(string(body))
 
 		got := struct {
 			Code int    `json:"code"`
@@ -105,7 +103,7 @@ func addRoute(serve *easytcp.Server) {
 			//todo
 		}
 
-		log.Printf("user %d signin\n", got.Data.UserId)
+		fmt.Printf("user %d login\n", got.Data.UserId)
 
 		resp.Code = 0
 	})
