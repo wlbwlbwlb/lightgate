@@ -3,6 +3,9 @@ package tcpx
 import (
 	"log"
 
+	"github.com/wl955/lightgate/router"
+	"github.com/wl955/lightgate/sess"
+
 	"github.com/DarthPestilane/easytcp"
 )
 
@@ -20,21 +23,17 @@ func Init(opts ...Option) (serve *easytcp.Server, e error) {
 
 	serve = easytcp.NewServer(&opt)
 
-	serve.OnSessionCreate = func(sess easytcp.Session) {
-		log.Printf("session created: %v\n", sess.ID())
+	serve.OnSessionCreate = func(s easytcp.Session) {
+		log.Printf("session created: %v\n", s.ID())
 	}
-	serve.OnSessionClose = func(sess easytcp.Session) {
-		log.Printf("session closed: %v\n", sess.ID())
-		if _, ok := sess.ID().(int64); ok {
-			sessions.onSessionClose(sess)
+	serve.OnSessionClose = func(s easytcp.Session) {
+		log.Printf("session closed: %v\n", s.ID())
+		if _, ok := s.ID().(int64); ok {
+			sess.OnSessionClose(s)
 		}
 	}
 
-	serve.AddRoute(1, func(c easytcp.Context) {
-		c.SetResponseMessage(easytcp.NewMessage(2, []byte("pong")))
-	})
-
-	addRoute(serve)
+	router.Init(serve)
 
 	return
 }

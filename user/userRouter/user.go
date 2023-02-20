@@ -1,4 +1,4 @@
-package tcpx
+package userRouter
 
 import (
 	"encoding/json"
@@ -9,6 +9,7 @@ import (
 
 	"github.com/wl955/lightgate/config"
 	"github.com/wl955/lightgate/kvstore"
+	"github.com/wl955/lightgate/sess"
 
 	"github.com/DarthPestilane/easytcp"
 	"github.com/gomodule/redigo/redis"
@@ -16,7 +17,7 @@ import (
 
 var client = &http.Client{}
 
-func addRoute(serve *easytcp.Server) {
+func Router(serve *easytcp.Server) {
 
 	serve.AddRoute(1001, func(c easytcp.Context) {
 		resp := struct {
@@ -85,7 +86,7 @@ func addRoute(serve *easytcp.Server) {
 		b3 := nil == e2 && val != config.TOML.Port
 
 		if b || b2 {
-			sessions.onLoginSuccess(got.UserId, c.Session())
+			sess.OnLoginSuccess(got.UserId, c.Session())
 			conn.Do("SET", keyStr, config.TOML.Port)
 		}
 
