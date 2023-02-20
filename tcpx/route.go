@@ -19,8 +19,6 @@ var client = &http.Client{}
 func addRoute(serve *easytcp.Server) {
 
 	serve.AddRoute(1001, func(c easytcp.Context) {
-		var e error
-
 		resp := struct {
 			Code int `json:"code"`
 		}{
@@ -30,24 +28,23 @@ func addRoute(serve *easytcp.Server) {
 			c.SetResponse(1002, &resp)
 		}()
 
-		req := struct {
+		param := struct {
 			Token string `json:"token"`
 		}{}
-		e = c.Bind(&req)
-		if e != nil {
+		if e := c.Bind(&param); e != nil {
 			return
 		}
 
-		req2, e := http.NewRequest("GET",
+		req, e := http.NewRequest("GET",
 			config.TOML.Authapi,
 			nil,
 		)
 		if e != nil {
 			return
 		}
-		req2.Header.Add("x-token", req.Token)
+		req.Header.Add("x-token", param.Token)
 
-		res, e := client.Do(req2)
+		res, e := client.Do(req)
 		if e != nil {
 			return
 		}
@@ -64,11 +61,8 @@ func addRoute(serve *easytcp.Server) {
 		}
 
 		got := struct {
-			Code int    `json:"code"`
-			Msg  string `json:"msg"`
-			Data struct {
-				UserId int64 `json:"user_id"`
-			}
+			Code   int   `json:"code"`
+			UserId int64 `json:"user_id"`
 		}{}
 		if e = json.Unmarshal(body, &got); e != nil {
 			return
@@ -77,7 +71,7 @@ func addRoute(serve *easytcp.Server) {
 		conn := kvstore.RedisPool.Get()
 		defer conn.Close()
 
-		keyStr := fmt.Sprintf("user:%d:loc", got.Data.UserId)
+		keyStr := fmt.Sprintf("user:%d:loc", got.UserId)
 
 		val, e2 := redis.Int(conn.Do("GET", keyStr))
 
@@ -91,7 +85,7 @@ func addRoute(serve *easytcp.Server) {
 		b3 := nil == e2 && val != config.TOML.Port
 
 		if b || b2 {
-			sessions.onLoginSuccess(got.Data.UserId, c.Session())
+			sessions.onLoginSuccess(got.UserId, c.Session())
 			conn.Do("SET", keyStr, config.TOML.Port)
 		}
 
@@ -99,7 +93,7 @@ func addRoute(serve *easytcp.Server) {
 			//todo
 		}
 
-		fmt.Printf("user %d login\n", got.Data.UserId)
+		fmt.Printf("user %d login\n", got.UserId)
 
 		resp.Code = 0
 	})
