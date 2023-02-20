@@ -22,15 +22,11 @@ func addRoute(serve *easytcp.Server) {
 		var e error
 
 		resp := struct {
-			Code int    `json:"code"`
-			Msg  string `json:"msg"`
+			Code int `json:"code"`
 		}{
 			Code: 1,
 		}
 		defer func() {
-			if e != nil {
-				resp.Msg = e.Error()
-			}
 			c.SetResponse(1002, &resp)
 		}()
 
