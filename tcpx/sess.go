@@ -19,7 +19,6 @@ type SessionManager struct {
 func (p *SessionManager) onLoginSuccess(uid int64, sess easytcp.Session) {
 	p.lock.Lock()
 	defer p.lock.Unlock()
-
 	sess.SetID(uid)
 	p.storage[uid] = sess
 }
