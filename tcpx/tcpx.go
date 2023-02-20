@@ -17,8 +17,7 @@ func Init(opts ...Option) (serve *easytcp.Server, e error) {
 	}
 
 	opt := easytcp.ServerOption{
-		Packer: easytcp.NewDefaultPacker(),
-		Codec:  &easytcp.JsonCodec{},
+		Codec: &easytcp.JsonCodec{},
 	}
 
 	serve = easytcp.NewServer(&opt)
