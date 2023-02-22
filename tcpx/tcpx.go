@@ -3,6 +3,7 @@ package tcpx
 import (
 	"log"
 
+	"github.com/wl955/lightgate/middleware"
 	"github.com/wl955/lightgate/router"
 	"github.com/wl955/lightgate/sess"
 
@@ -31,6 +32,8 @@ func Init(opts ...Option) (serve *easytcp.Server, e error) {
 			sess.OnSessionClose(s)
 		}
 	}
+
+	serve.Use(middleware.Log(), middleware.Recover())
 
 	router.Init(serve)
 
