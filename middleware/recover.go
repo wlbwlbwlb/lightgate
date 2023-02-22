@@ -12,7 +12,7 @@ func Recover() easytcp.MiddlewareFunc {
 		return func(c easytcp.Context) {
 			defer func() {
 				if r := recover(); r != nil {
-					log.Errorf("PANIC, sessId=%v, e=%+v, stack=%s", c.Session().ID(), r, debug.Stack())
+					log.Errorf("PANIC, e=%+v, stack=%s", r, debug.Stack())
 				}
 			}()
 			next(c)
