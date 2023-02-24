@@ -9,7 +9,7 @@ import (
 
 	"github.com/wl955/lightgate/config"
 	"github.com/wl955/lightgate/kvstore"
-	"github.com/wl955/lightgate/sess"
+	"github.com/wl955/lightgate/sessions"
 
 	"github.com/DarthPestilane/easytcp"
 	"github.com/gomodule/redigo/redis"
@@ -29,23 +29,23 @@ func Router(serve *easytcp.Server) {
 			c.SetResponse(1002, &resp)
 		}()
 
-		param := struct {
+		req := struct {
 			Token string `json:"token"`
 		}{}
-		if e := c.Bind(&param); e != nil {
+		if e := c.Bind(&req); e != nil {
 			return
 		}
 
-		req, e := http.NewRequest("GET",
+		req2, e := http.NewRequest("GET",
 			config.TOML.Authapi,
 			nil,
 		)
 		if e != nil {
 			return
 		}
-		req.Header.Add("x-token", param.Token)
+		req2.Header.Add("x-token", req.Token)
 
-		res, e := client.Do(req)
+		res, e := client.Do(req2)
 		if e != nil {
 			return
 		}
@@ -61,18 +61,18 @@ func Router(serve *easytcp.Server) {
 			return
 		}
 
-		got := struct {
+		resp2 := struct {
 			Code   int   `json:"code"`
 			UserId int64 `json:"user_id"`
 		}{}
-		if e = json.Unmarshal(body, &got); e != nil {
+		if e = json.Unmarshal(body, &resp2); e != nil {
 			return
 		}
 
 		conn := kvstore.RedisPool.Get()
 		defer conn.Close()
 
-		keyStr := fmt.Sprintf("user:%d:loc", got.UserId)
+		keyStr := fmt.Sprintf("user:%d:loc", resp2.UserId)
 
 		val, e2 := redis.Int(conn.Do("GET", keyStr))
 
@@ -86,15 +86,13 @@ func Router(serve *easytcp.Server) {
 		b3 := nil == e2 && val != config.TOML.Port
 
 		if b || b2 {
-			sess.OnLoginSuccess(got.UserId, c.Session())
+			sessions.OnLogin(resp2.UserId, c.Session())
 			conn.Do("SET", keyStr, config.TOML.Port)
 		}
 
 		if b3 {
 			//todo
 		}
-
-		fmt.Printf("user %d login\n", got.UserId)
 
 		resp.Code = 0
 	})

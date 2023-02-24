@@ -5,7 +5,7 @@ import (
 
 	"github.com/wl955/lightgate/middleware"
 	"github.com/wl955/lightgate/router"
-	"github.com/wl955/lightgate/sess"
+	"github.com/wl955/lightgate/sessions"
 
 	"github.com/DarthPestilane/easytcp"
 )
@@ -23,13 +23,13 @@ func Init(opts ...Option) (serve *easytcp.Server, e error) {
 
 	serve = easytcp.NewServer(&opt)
 
-	serve.OnSessionCreate = func(s easytcp.Session) {
-		log.Printf("session created: %v\n", s.ID())
+	serve.OnSessionCreate = func(sess easytcp.Session) {
+		log.Printf("session created: %v\n", sess.ID())
 	}
-	serve.OnSessionClose = func(s easytcp.Session) {
-		log.Printf("session closed: %v\n", s.ID())
-		if _, ok := s.ID().(int64); ok {
-			sess.OnSessionClose(s)
+	serve.OnSessionClose = func(sess easytcp.Session) {
+		log.Printf("session closed: %v\n", sess.ID())
+		if _, ok := sess.ID().(int64); ok {
+			sessions.OnLogout(sess)
 		}
 	}
 
