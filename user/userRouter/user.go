@@ -74,20 +74,20 @@ func Router(serve *easytcp.Server) {
 
 		keyStr := fmt.Sprintf("user:%d:loc", resp2.UserId)
 
-		val, e2 := redis.Int(conn.Do("GET", keyStr))
+		val, e2 := redis.String(conn.Do("GET", keyStr))
 
 		//没登录过
 		b := redis.ErrNil == e2
 
 		//已经登录本服
-		b2 := nil == e2 && val == config.TOML.Port
+		b2 := nil == e2 && val == config.TOML.Addr
 
 		//已经登录其他服
-		b3 := nil == e2 && val != config.TOML.Port
+		b3 := nil == e2 && val != config.TOML.Addr
 
 		if b || b2 {
 			sessions.OnLogin(resp2.UserId, c.Session())
-			conn.Do("SET", keyStr, config.TOML.Port)
+			conn.Do("SET", keyStr, config.TOML.Addr)
 		}
 
 		if b3 {

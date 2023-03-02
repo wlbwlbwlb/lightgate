@@ -8,7 +8,7 @@ import (
 )
 
 type Toml struct {
-	Port    int
+	Addr    string
 	Authapi string
 	Nsq     NsqConfig
 	Redis   RedisConfig
@@ -27,7 +27,7 @@ type RedisConfig struct {
 var TOML Toml
 
 func init() {
-	pflag.Int("port", 8081, "listen port")
+	pflag.String("addr", ":8081", "tcp addr")
 	f := pflag.StringP("file", "f", "./configs/config.toml", "config path")
 
 	pflag.Parse()

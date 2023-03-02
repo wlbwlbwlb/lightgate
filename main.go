@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"os"
 	"os/signal"
@@ -40,7 +39,7 @@ func main() {
 	serve, _ := tcpx.Init(tcpx.Writer(w))
 
 	go func() {
-		if err := serve.Run(fmt.Sprintf(":%d", config.TOML.Port)); err != nil && err != easytcp.ErrServerStopped {
+		if err := serve.Run(config.TOML.Addr); err != nil && err != easytcp.ErrServerStopped {
 			log.Fatalf("listen: %s\n", err)
 		}
 	}()
