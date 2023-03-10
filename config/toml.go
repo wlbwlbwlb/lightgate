@@ -28,7 +28,7 @@ var TOML Toml
 
 func init() {
 	pflag.String("addr", ":8081", "tcp addr")
-	f := pflag.StringP("file", "f", "./configs/config.toml", "config path")
+	f := pflag.String("toml", "./configs/config.toml", "config path")
 
 	pflag.Parse()
 	viper.BindPFlags(pflag.CommandLine)
