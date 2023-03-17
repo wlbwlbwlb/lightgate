@@ -2,19 +2,17 @@ package main
 
 import (
 	"context"
-	"io"
-	"os"
 	"os/signal"
 	"syscall"
 	"time"
 
 	"github.com/wl955/lightgate/config"
-	_ "github.com/wl955/lightgate/mq"
+	_ "github.com/wl955/lightgate/pubsub"
 	"github.com/wl955/lightgate/tcpx"
 
 	"github.com/DarthPestilane/easytcp"
-	"github.com/wl955/log"
-	"github.com/wl955/nsqx"
+	"github.com/wlbwlbwlb/log"
+	"github.com/wlbwlbwlb/mq"
 )
 
 func main() {
@@ -24,19 +22,18 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 
-	defer log.Sync()
+	logger := log.Logger()
+	defer logger.Sync()
 
-	w := io.MultiWriter(os.Stdout, log.Writer())
-
-	quit, e := nsqx.Init(nsqx.Lookupd(config.TOML.Nsq.Lookupd),
-		nsqx.Nsqd(config.TOML.Nsq.Nsqd),
+	quit, e := mq.Init(mq.Lookupd(config.TOML.Nsq.Lookupd),
+		mq.Nsqd(config.TOML.Nsq.Nsqd),
 	)
 	if e != nil {
 		log.Fatal(e.Error())
 	}
 	defer quit()
 
-	serve, _ := tcpx.Init(tcpx.Writer(w))
+	serve, _ := tcpx.Init(tcpx.Writer(log.Writer()))
 
 	go func() {
 		if err := serve.Run(config.TOML.Addr); err != nil && err != easytcp.ErrServerStopped {

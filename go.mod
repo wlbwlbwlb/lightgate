@@ -8,8 +8,8 @@ require (
 	github.com/nsqio/go-nsq v1.1.0
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.14.0
-	github.com/wl955/log v0.0.0-20221118085132-f536573290ff
-	github.com/wl955/nsqx v0.0.0-20230210074943-411c10188be8
+	github.com/wlbwlbwlb/log v0.0.0-20230306065659-405c2912b075
+	github.com/wlbwlbwlb/mq v0.0.0-20230316093842-416f3719e2e8
 )
 
 require (
@@ -39,7 +39,7 @@ require (
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
-	go.uber.org/zap v1.23.0 // indirect
+	go.uber.org/zap v1.24.0 // indirect
 	golang.org/x/sys v0.0.0-20220908164124-27713097b956 // indirect
 	golang.org/x/text v0.4.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect

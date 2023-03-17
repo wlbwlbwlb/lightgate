@@ -4,7 +4,7 @@ import (
 	"runtime/debug"
 
 	"github.com/DarthPestilane/easytcp"
-	"github.com/wl955/log"
+	"github.com/wlbwlbwlb/log"
 )
 
 func Recover() easytcp.MiddlewareFunc {

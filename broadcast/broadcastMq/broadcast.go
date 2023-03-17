@@ -4,11 +4,11 @@ import (
 	"log"
 
 	"github.com/nsqio/go-nsq"
-	"github.com/wl955/nsqx"
+	"github.com/wlbwlbwlb/mq"
 )
 
 func init() {
-	nsqx.Sub("topic", "channel", nsq.HandlerFunc(handleMessage))
+	mq.Sub("topic", "channel", nsq.HandlerFunc(handleMessage))
 }
 
 // HandleMessage implements the Handler interface.
