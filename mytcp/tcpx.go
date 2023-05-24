@@ -1,4 +1,4 @@
-package tcpx
+package mytcp
 
 import (
 	"log"

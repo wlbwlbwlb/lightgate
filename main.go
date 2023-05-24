@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/wl955/lightgate/config"
+	"github.com/wl955/lightgate/mytcp"
 	_ "github.com/wl955/lightgate/pubsub"
-	"github.com/wl955/lightgate/tcpx"
 
 	"github.com/DarthPestilane/easytcp"
 	"github.com/wlbwlbwlb/log"
@@ -33,7 +33,7 @@ func main() {
 	}
 	defer quit()
 
-	serve, _ := tcpx.Init(tcpx.Writer(log.Writer()))
+	serve, _ := mytcp.Init(mytcp.Writer(log.Writer()))
 
 	go func() {
 		if err := serve.Run(config.TOML.Addr); err != nil && err != easytcp.ErrServerStopped {
