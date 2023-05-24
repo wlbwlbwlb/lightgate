@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/wl955/lightgate/config"
+	_ "github.com/wl955/lightgate/mysub"
 	"github.com/wl955/lightgate/mytcp"
-	_ "github.com/wl955/lightgate/pubsub"
 
 	"github.com/DarthPestilane/easytcp"
 	"github.com/wlbwlbwlb/log"
