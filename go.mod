@@ -9,7 +9,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.14.0
 	github.com/wlbwlbwlb/log v0.0.0-20230526055730-c3aa9ae6ee21
-	github.com/wlbwlbwlb/mq v0.0.0-20230316093842-416f3719e2e8
+	github.com/wlbwlbwlb/mq v0.0.0-20230526060943-92d043d7c9eb
 )
 
 require (
