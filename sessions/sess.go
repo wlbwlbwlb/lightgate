@@ -30,3 +30,6 @@ func OnLogout(sess easytcp.Session) {
 
 	delete(storage, uid)
 }
+
+//fatal error: user 10002175 logout
+//concurrent map iteration and map write
