@@ -28,9 +28,7 @@ func Init(opts ...Option) (serve *easytcp.Server, e error) {
 	}
 	serve.OnSessionClose = func(sess easytcp.Session) {
 		log.Printf("session closed: %v\n", sess.ID())
-		if _, ok := sess.ID().(int64); ok {
-			sessions.OnLogout(sess)
-		}
+		sessions.OnLogout(sess)
 	}
 
 	serve.Use(middleware.Log(), middleware.Recover())

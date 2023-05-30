@@ -9,7 +9,11 @@ import (
 
 var mutex sync.RWMutex
 
-var storage map[int64]easytcp.Session
+var uidSessMapper map[int64]easytcp.Session
+
+var idSessMapper map[string]easytcp.Session
+
+var sidUidMapper map[string]int64
 
 func OnLogin(userId int64, sess easytcp.Session) {
 	fmt.Printf("user %d login\n", userId)
@@ -17,18 +21,33 @@ func OnLogin(userId int64, sess easytcp.Session) {
 	mutex.Lock()
 	defer mutex.Unlock()
 
-	sess.SetID(userId)
-	storage[userId] = sess
+	sessId := sess.ID().(string)
+	idSessMapper[sessId] = sess
+	sidUidMapper[sessId] = userId
+
+	uidSessMapper[userId] = sess
 }
 
 func OnLogout(sess easytcp.Session) {
-	uid := sess.ID().(int64)
+	uid, ok := sidUidMapper[sess.ID().(string)]
+	if !ok {
+		return
+	}
 	fmt.Printf("user %d logout\n", uid)
 
 	mutex.Lock()
 	defer mutex.Unlock()
 
-	delete(storage, uid)
+	sessId := sess.ID().(string)
+	delete(idSessMapper, sessId)
+	delete(sidUidMapper, sessId)
+
+	sess2, _ := uidSessMapper[uid]
+	sessId2 := sess2.ID().(string)
+
+	if sessId == sessId2 {
+		delete(uidSessMapper, uid)
+	}
 }
 
 //fatal error: user 10002175 logout
