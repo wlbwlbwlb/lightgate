@@ -11,7 +11,7 @@ var mutex sync.RWMutex
 
 var uidSessMapper map[int64]easytcp.Session
 
-var idSessMapper map[string]easytcp.Session
+var sidSessMapper map[string]easytcp.Session
 
 var sidUidMapper map[string]int64
 
@@ -22,32 +22,45 @@ func OnLogin(userId int64, sess easytcp.Session) {
 	defer mutex.Unlock()
 
 	sessId := sess.ID().(string)
-	idSessMapper[sessId] = sess
+	sidSessMapper[sessId] = sess
 	sidUidMapper[sessId] = userId
 
 	uidSessMapper[userId] = sess
+	//用户上线 todo
 }
 
 func OnLogout(sess easytcp.Session) {
-	uid, ok := sidUidMapper[sess.ID().(string)]
+	userId, ok := sidUidMapper[sess.ID().(string)]
 	if !ok {
 		return
 	}
-	fmt.Printf("user %d logout\n", uid)
+	fmt.Printf("user %d logout\n", userId)
 
 	mutex.Lock()
 	defer mutex.Unlock()
 
 	sessId := sess.ID().(string)
-	delete(idSessMapper, sessId)
+	delete(sidSessMapper, sessId)
 	delete(sidUidMapper, sessId)
 
-	sess2, _ := uidSessMapper[uid]
-	sessId2 := sess2.ID().(string)
+	//写登出日志 todo
 
-	if sessId == sessId2 {
-		delete(uidSessMapper, uid)
+	sessNow, _ := uidSessMapper[userId]
+	sessIdNow := sessNow.ID().(string)
+	if sessId == sessIdNow {
+		delete(uidSessMapper, userId)
+		//用户离线 todo
 	}
+}
+
+func OnKickout(userId int64) {
+	sess, _ := uidSessMapper[userId]
+	//通知old登出 todo
+	sess.Close()
+}
+
+func OnLogoutNotify(userId int64, loc string) {
+	//通知old其他服登出 todo
 }
 
 //fatal error: user 10002175 logout
