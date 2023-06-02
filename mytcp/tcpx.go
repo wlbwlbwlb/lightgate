@@ -24,10 +24,10 @@ func Init(opts ...Option) (serve *easytcp.Server, e error) {
 	serve = easytcp.NewServer(&opt)
 
 	serve.OnSessionCreate = func(sess easytcp.Session) {
-		log.Printf("session created: %v\n", sess.ID())
+		log.Printf("session %v created\n", sess.ID())
 	}
 	serve.OnSessionClose = func(sess easytcp.Session) {
-		log.Printf("session closed: %v\n", sess.ID())
+		log.Printf("session %v closed\n", sess.ID())
 		sessions.OnLogout(sess)
 	}
 

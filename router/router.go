@@ -8,7 +8,7 @@ import (
 func Init(serve *easytcp.Server) {
 
 	serve.AddRoute(1, func(c easytcp.Context) {
-		c.SetResponseMessage(easytcp.NewMessage(2, []byte("pong")))
+		c.SetResponseMessage(easytcp.NewMessage(2, []byte("ok")))
 	})
 
 	userRouter.Router(serve)
