@@ -3,16 +3,16 @@ package kvstore
 import (
 	"time"
 
-	"github.com/wl955/lightgate/config"
+	"github.com/wlbwlbwlb/lightgate/config"
 
 	"github.com/gomodule/redigo/redis"
 )
 
 var RedisPool = newPool(config.TOML.Redis.Server, config.TOML.Redis.Password, 0)
 
-//server="localhost:6379"
-//password=""
-//db=0
+// server="localhost:6379"
+// password=""
+// db=0
 func newPool(server, password string, db int) *redis.Pool {
 	return &redis.Pool{
 		MaxIdle:     100,

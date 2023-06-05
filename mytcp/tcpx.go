@@ -3,9 +3,9 @@ package mytcp
 import (
 	"log"
 
-	"github.com/wl955/lightgate/middleware"
-	"github.com/wl955/lightgate/router"
-	"github.com/wl955/lightgate/sessions"
+	"github.com/wlbwlbwlb/lightgate/middleware"
+	"github.com/wlbwlbwlb/lightgate/router"
+	"github.com/wlbwlbwlb/lightgate/sessions"
 
 	"github.com/DarthPestilane/easytcp"
 )

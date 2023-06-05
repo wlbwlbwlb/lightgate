@@ -1,8 +1,9 @@
 package router
 
 import (
+	"github.com/wlbwlbwlb/lightgate/user/userRouter"
+
 	"github.com/DarthPestilane/easytcp"
-	"github.com/wl955/lightgate/user/userRouter"
 )
 
 func Init(serve *easytcp.Server) {

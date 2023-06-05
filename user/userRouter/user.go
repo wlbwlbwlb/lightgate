@@ -7,9 +7,9 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/wl955/lightgate/config"
-	"github.com/wl955/lightgate/kvstore"
-	"github.com/wl955/lightgate/sessions"
+	"github.com/wlbwlbwlb/lightgate/config"
+	"github.com/wlbwlbwlb/lightgate/kvstore"
+	"github.com/wlbwlbwlb/lightgate/sessions"
 
 	"github.com/DarthPestilane/easytcp"
 	"github.com/gomodule/redigo/redis"

@@ -6,9 +6,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/wl955/lightgate/config"
-	_ "github.com/wl955/lightgate/mysub"
-	"github.com/wl955/lightgate/mytcp"
+	"github.com/wlbwlbwlb/lightgate/config"
+	_ "github.com/wlbwlbwlb/lightgate/mysub"
+	"github.com/wlbwlbwlb/lightgate/mytcp"
 
 	"github.com/DarthPestilane/easytcp"
 	"github.com/wlbwlbwlb/log"

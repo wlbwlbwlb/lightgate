@@ -1,5 +1,5 @@
 package mysub
 
 import (
-	_ "github.com/wl955/lightgate/broadcast/broadcastMq"
+	_ "github.com/wlbwlbwlb/lightgate/broadcast/broadcastMq"
 )
