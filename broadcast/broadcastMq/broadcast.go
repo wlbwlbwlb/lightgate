@@ -1,9 +1,8 @@
 package broadcastMq
 
 import (
-	"log"
-
 	"github.com/nsqio/go-nsq"
+	"github.com/wlbwlbwlb/log"
 	"github.com/wlbwlbwlb/mq"
 )
 
@@ -21,7 +20,7 @@ func handleMessage(m *nsq.Message) (e error) {
 
 	// do whatever actual message processing is desired
 	//err := processMessage(m.Body)
-	log.Println(string(m.Body))
+	log.Info(string(m.Body))
 
 	// Returning a non-nil error will automatically send a REQ command to NSQ to re-queue the message.
 	return
