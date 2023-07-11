@@ -25,19 +25,21 @@ func main() {
 	logger := log.Logger()
 	defer logger.Sync()
 
-	quit, e := mq.Init(mq.Lookupd(config.TOML.Nsq.Lookupd),
+	if e := mq.Init(mq.Lookupd(config.TOML.Nsq.Lookupd),
 		mq.Nsqd(config.TOML.Nsq.Nsqd),
-	)
-	if e != nil {
+	); e != nil {
 		log.Fatal(e.Error())
 	}
-	defer quit()
+	defer func() {
+		mq.StopConsumers()
+		mq.StopProducer()
+	}()
 
 	serve, _ := mytcp.Init(mytcp.Writer(log.Writer()))
 
 	go func() {
-		if err := serve.Run(config.TOML.Addr); err != nil && err != easytcp.ErrServerStopped {
-			log.Fatalf("listen: %s\n", err)
+		if e := serve.Run(config.TOML.Addr); e != nil && e != easytcp.ErrServerStopped {
+			log.Fatalf("listen: %s\n", e)
 		}
 	}()
 
@@ -48,15 +50,15 @@ func main() {
 	stop()
 	log.Info("shutting down gracefully, press Ctrl+C again to force")
 
-	quit()
+	mq.StopConsumers()
 
 	// The context is used to inform the server it has 5 seconds to finish
 	// the request it is currently handling
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	if err := serve.Stop(); err != nil {
-		log.Fatal("serve stop: ", err)
+	if e := serve.Stop(); e != nil {
+		log.Fatal("serve stop: ", e)
 	}
 
 	log.Info("serve exiting")

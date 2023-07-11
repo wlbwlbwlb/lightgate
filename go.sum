@@ -214,8 +214,8 @@ github.com/vmihailenco/tagparser/v2 v2.0.0 h1:y09buUbR+b5aycVFQs/g70pqKVZNBmxwAh
 github.com/vmihailenco/tagparser/v2 v2.0.0/go.mod h1:Wri+At7QHww0WTrCBeu4J6bNtoV6mEfg5OIWRZA9qds=
 github.com/wlbwlbwlb/log v0.0.0-20230526055730-c3aa9ae6ee21 h1:eW6E0PKHSBxJ+UrYU7LPGcm7DOKrFIt2k5XWIxs/2fc=
 github.com/wlbwlbwlb/log v0.0.0-20230526055730-c3aa9ae6ee21/go.mod h1:D+8zr6aulmPoDOcNDtwvxFP1WXumcpdo3rRiINBU2Cg=
-github.com/wlbwlbwlb/mq v0.0.0-20230605030610-720e9f779f88 h1:WRuXK/S7qKDRhRkkSNAJfsCMBQIM80LX5yksotDpt30=
-github.com/wlbwlbwlb/mq v0.0.0-20230605030610-720e9f779f88/go.mod h1:LxcXX9Piz6kYWL/89CbmaqkUXGbZ1tQXvAlwZ6f8yGs=
+github.com/wlbwlbwlb/mq v0.0.0-20230711084820-b44f8de0a4f0 h1:kiSfJJqFzZY4afQzgoUIxQhHW83GdpojC2S4S4BFuSc=
+github.com/wlbwlbwlb/mq v0.0.0-20230711084820-b44f8de0a4f0/go.mod h1:LxcXX9Piz6kYWL/89CbmaqkUXGbZ1tQXvAlwZ6f8yGs=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
